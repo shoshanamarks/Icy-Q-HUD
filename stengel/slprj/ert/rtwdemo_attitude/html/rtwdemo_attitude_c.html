@@ -1,0 +1,176 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>RTW Report - rtwdemo_attitude.c</title>
+<style> .LN { font-style: italic; color: #888888 } </style>
+<style> .CT { font-style: italic; color: #117755 } </style>
+<style> .PP { font-style: bold;   color: #992211 } </style>
+<style> .KW { font-style: bold;   color: #112266 } </style>
+<style> .DT { font-style: bold;   color: #112266 } </style>
+<link rel="stylesheet" type="text/css" href="rtwreport.css"></link><script language="JavaScript" type="text/javascript" src="rtwreport_utils.js"></script>
+<SCRIPT type="text/javascript" src="rtwannotate.js"></SCRIPT>
+</head>
+<body bgcolor="#eeeeee" text="#1122aa" onload="try {if (top) { if (top.rtwFileOnLoad) top.rtwFileOnLoad(window.document); else local_onload();}} catch(err) {};if (typeof rtwannotate === 'function') {rtwannotate('rtwdemo_attitude_c_cov.xml');}">
+<p>
+<table border="0" cellspacing="0" cellpadding="6" width="100%%" height="100%%"><tr><td width="100%%" valign="top" bgcolor="#ffffff">
+<h4>File: <a href="../rtwdemo_attitude.c" target="rtwreport_document_frame" id="linkToText_plain">rtwdemo_attitude.c</a></h4>
+<pre id="RTWcode">
+<span><a class="LN" name="1">    1   </a><span class="CT">/*</span>
+</span><span><a class="LN" name="2">    2   </a><span class="CT"> * File: rtwdemo_attitude.c</span>
+</span><span><a class="LN" name="3">    3   </a><span class="CT"> *</span>
+</span><span><a class="LN" name="4">    4   </a><span class="CT"> * Code generated for Simulink model 'rtwdemo_attitude'.</span>
+</span><span><a class="LN" name="5">    5   </a><span class="CT"> *</span>
+</span><span><a class="LN" name="6">    6   </a><span class="CT"> * Model version                  : 1.29</span>
+</span><span><a class="LN" name="7">    7   </a><span class="CT"> * Simulink Coder version         : 8.5 (R2013b) 08-Aug-2013</span>
+</span><span><a class="LN" name="8">    8   </a><span class="CT"> * C/C++ source code generated on : Thu Nov 21 02:48:21 2013</span>
+</span><span><a class="LN" name="9">    9   </a><span class="CT"> *</span>
+</span><span><a class="LN" name="10">   10   </a><span class="CT"> * Target selection: ert.tlc</span>
+</span><span><a class="LN" name="11">   11   </a><span class="CT"> * Embedded hardware selection: Specified</span>
+</span><span><a class="LN" name="12">   12   </a><span class="CT"> * Code generation objectives: Unspecified</span>
+</span><span><a class="LN" name="13">   13   </a><span class="CT"> * Validation result: Not run</span>
+</span><span><a class="LN" name="14">   14   </a><span class="CT"> */</span>
+</span><span><a class="LN" name="15">   15   </a>
+</span><span><a class="LN" name="16">   16   </a><font color="#992211">#</font><span class="PP">include</span> <font color="#992211">&quot;rtwdemo_attitude.h&quot;</font>
+</span><span><a class="LN" name="17">   17   </a>
+</span><span><a class="LN" name="18">   18   </a><span class="CT">/* Macros for accessing real-time model data structure */</span>
+</span><span><a class="LN" name="19">   19   </a><font color="#992211">#</font><span class="PP">ifndef</span> rtmGetErrorStatus
+</span><span><a class="LN" name="20">   20   </a><font color="#992211">#</font> <span class="PP">define</span> rtmGetErrorStatus(rtm)        (*((rtm)-&gt;errorStatus))
+</span><span><a class="LN" name="21">   21   </a><font color="#992211">#</font><span class="PP">endif</span>
+</span><span><a class="LN" name="22">   22   </a>
+</span><span><a class="LN" name="23">   23   </a><font color="#992211">#</font><span class="PP">ifndef</span> rtmSetErrorStatus
+</span><span><a class="LN" name="24">   24   </a><font color="#992211">#</font> <span class="PP">define</span> rtmSetErrorStatus(rtm, val)   (*((rtm)-&gt;errorStatus) = (val))
+</span><span><a class="LN" name="25">   25   </a><font color="#992211">#</font><span class="PP">endif</span>
+</span><span><a class="LN" name="26">   26   </a>
+</span><span><a class="LN" name="27">   27   </a><font color="#992211">#</font><span class="PP">ifndef</span> rtmGetErrorStatusPointer
+</span><span><a class="LN" name="28">   28   </a><font color="#992211">#</font> <span class="PP">define</span> rtmGetErrorStatusPointer(rtm) (rtm)-&gt;errorStatus
+</span><span><a class="LN" name="29">   29   </a><font color="#992211">#</font><span class="PP">endif</span>
+</span><span><a class="LN" name="30">   30   </a>
+</span><span><a class="LN" name="31">   31   </a><font color="#992211">#</font><span class="PP">ifndef</span> rtmSetErrorStatusPointer
+</span><span><a class="LN" name="32">   32   </a><font color="#992211">#</font> <span class="PP">define</span> rtmSetErrorStatusPointer(rtm, val) ((rtm)-&gt;errorStatus = (val))
+</span><span><a class="LN" name="33">   33   </a><font color="#992211">#</font><span class="PP">endif</span>
+</span><span><a class="LN" name="34">   34   </a>
+</span><span><a class="LN" name="35">   35   </a><span class="CT">/* Disable for referenced model: 'rtwdemo_attitude' */</span>
+</span><span><a class="LN" name="36">   36   </a><span class="DT">void</span> <a name="fcn_rtwdemo_attitude_Disable">rtwdemo_attitude_Disable</a>(<a href="rtwdemo_attitude_h.html#type_rtwdemo_attitude_rtDW" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_rtwdemo_attitude_rtDW');" target="rtwreport_document_frame"><font color="#1122aa">rtwdemo_attitude_rtDW</font></a> *localDW)
+</span><span><a class="LN" name="37">   37   </a><b>{</b>
+</span><span><a class="LN" name="38">   38   </a>  <span class="CT">/* Disable for DiscreteIntegrator: '<a href="matlab:coder.internal.code2model('rtwdemo_attitude:33')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/Integrator</i></font></a>' */</span>
+</span><span><a class="LN" name="39">   39   </a>  localDW-&gt;Integrator_DSTATE = localDW-&gt;Integrator;
+</span><span><a class="LN" name="40">   40   </a><b>}</b>
+</span><span><a class="LN" name="41">   41   </a>
+</span><span><a class="LN" name="42">   42   </a><span class="CT">/* Output and update for referenced model: 'rtwdemo_attitude' */</span>
+</span><span><a class="LN" name="43">   43   </a><span class="DT">void</span> <a name="fcn_rtwdemo_attitude">rtwdemo_attitude</a>(<span class="DT">const</span> <a href="../../_sharedutils/html/rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="rtwreport_document_frame"><font color="#1122aa">real_T</font></a> *u_Disp_Cmd, <span class="DT">const</span> <a href="../../_sharedutils/html/rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="rtwreport_document_frame"><font color="#1122aa">real_T</font></a> *u_Disp_FB, <span class="DT">const</span>
+</span><span><a class="LN" name="44">   44   </a>                      <a href="../../_sharedutils/html/rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="rtwreport_document_frame"><font color="#1122aa">real_T</font></a> *u_Rate_FB, <span class="DT">const</span> <a href="../../_sharedutils/html/rtwtypes_h.html#type_boolean_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_boolean_T');" target="rtwreport_document_frame"><font color="#1122aa">boolean_T</font></a> *u_Engaged, <a href="../../_sharedutils/html/rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="rtwreport_document_frame"><font color="#1122aa">real_T</font></a>
+</span><span><a class="LN" name="45">   45   </a>                      *y_Surf_Cmd, <a href="rtwdemo_attitude_h.html#type_rtwdemo_attitude_rtDW" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_rtwdemo_attitude_rtDW');" target="rtwreport_document_frame"><font color="#1122aa">rtwdemo_attitude_rtDW</font></a> *localDW)
+</span><span><a class="LN" name="46">   46   </a><b>{</b>
+</span><span><a class="LN" name="47">   47   </a>  <span class="CT">/* local block i/o variables */</span>
+</span><span><a class="LN" name="48">   48   </a>  <a href="../../_sharedutils/html/rtwtypes_h.html#type_boolean_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_boolean_T');" target="rtwreport_document_frame"><font color="#1122aa">boolean_T</font></a> rtb_NotEngaged;
+</span><span><a class="LN" name="49">   49   </a>  <a href="../../_sharedutils/html/rtwtypes_h.html#type_real_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_real_T');" target="rtwreport_document_frame"><font color="#1122aa">real_T</font></a> rtb_Sum1;
+</span><span><a class="LN" name="50">   50   </a>
+</span><span><a class="LN" name="51">   51   </a>  <span class="CT">/* Logic: '<a href="matlab:coder.internal.code2model('rtwdemo_attitude:11')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/NotEngaged</i></font></a>' */</span>
+</span><span><a class="LN" name="52">   52   </a>  rtb_NotEngaged = !*u_Engaged;
+</span><span><a class="LN" name="53">   53   </a>
+</span><span><a class="LN" name="54">   54   </a>  <span class="CT">/* DiscreteIntegrator: '<a href="matlab:coder.internal.code2model('rtwdemo_attitude:33')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/Integrator</i></font></a>' */</span>
+</span><span><a class="LN" name="55">   55   </a>  <span class="KW">if</span> (rtb_NotEngaged || (localDW-&gt;Integrator_PrevResetState != 0)) <b>{</b>
+</span><span><a class="LN" name="56">   56   </a>    localDW-&gt;Integrator_DSTATE = 0.0;
+</span><span><a class="LN" name="57">   57   </a>  <b>}</b>
+</span><span><a class="LN" name="58">   58   </a>
+</span><span><a class="LN" name="59">   59   </a>  <span class="KW">if</span> (localDW-&gt;Integrator_DSTATE &gt;= 5.0) <b>{</b>
+</span><span><a class="LN" name="60">   60   </a>    localDW-&gt;Integrator_DSTATE = 5.0;
+</span><span><a class="LN" name="61">   61   </a>  <b>}</b> <span class="KW">else</span> <b>{</b>
+</span><span><a class="LN" name="62">   62   </a>    <span class="KW">if</span> (localDW-&gt;Integrator_DSTATE &lt;= -5.0) <b>{</b>
+</span><span><a class="LN" name="63">   63   </a>      localDW-&gt;Integrator_DSTATE = -5.0;
+</span><span><a class="LN" name="64">   64   </a>    <b>}</b>
+</span><span><a class="LN" name="65">   65   </a>  <b>}</b>
+</span><span><a class="LN" name="66">   66   </a>
+</span><span><a class="LN" name="67">   67   </a>  localDW-&gt;Integrator = localDW-&gt;Integrator_DSTATE;
+</span><span><a class="LN" name="68">   68   </a>
+</span><span><a class="LN" name="69">   69   </a>  <span class="CT">/* End of DiscreteIntegrator: '<a href="matlab:coder.internal.code2model('rtwdemo_attitude:33')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/Integrator</i></font></a>' */</span>
+</span><span><a class="LN" name="70">   70   </a>
+</span><span><a class="LN" name="71">   71   </a>  <span class="CT">/* Saturate: '<a href="matlab:coder.internal.code2model('rtwdemo_attitude:7')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/DispLimit</i></font></a>' */</span>
+</span><span><a class="LN" name="72">   72   </a>  <span class="KW">if</span> (*u_Disp_Cmd &gt;= 30.0) <b>{</b>
+</span><span><a class="LN" name="73">   73   </a>    rtb_Sum1 = 30.0;
+</span><span><a class="LN" name="74">   74   </a>  <b>}</b> <span class="KW">else</span> <span class="KW">if</span> (*u_Disp_Cmd &lt;= -30.0) <b>{</b>
+</span><span><a class="LN" name="75">   75   </a>    rtb_Sum1 = -30.0;
+</span><span><a class="LN" name="76">   76   </a>  <b>}</b> <span class="KW">else</span> <b>{</b>
+</span><span><a class="LN" name="77">   77   </a>    rtb_Sum1 = *u_Disp_Cmd;
+</span><span><a class="LN" name="78">   78   </a>  <b>}</b>
+</span><span><a class="LN" name="79">   79   </a>
+</span><span><a class="LN" name="80">   80   </a>  <span class="CT">/* Gain: '<a href="matlab:coder.internal.code2model('rtwdemo_attitude:6')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/DispGain</i></font></a>' incorporates:</span>
+</span><span><a class="LN" name="81">   81   </a><span class="CT">   *  Saturate: '<a href="matlab:coder.internal.code2model('rtwdemo_attitude:7')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/DispLimit</i></font></a>'</span>
+</span><span><a class="LN" name="82">   82   </a><span class="CT">   *  Sum: '<a href="matlab:coder.internal.code2model('rtwdemo_attitude:14')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/Sum</i></font></a>'</span>
+</span><span><a class="LN" name="83">   83   </a><span class="CT">   */</span>
+</span><span><a class="LN" name="84">   84   </a>  rtb_Sum1 = (rtb_Sum1 - *u_Disp_FB) * 0.75;
+</span><span><a class="LN" name="85">   85   </a>
+</span><span><a class="LN" name="86">   86   </a>  <span class="CT">/* Saturate: '<a href="matlab:coder.internal.code2model('rtwdemo_attitude:13')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/RateLimit</i></font></a>' */</span>
+</span><span><a class="LN" name="87">   87   </a>  <span class="KW">if</span> (rtb_Sum1 &gt;= 6.0) <b>{</b>
+</span><span><a class="LN" name="88">   88   </a>    rtb_Sum1 = 6.0;
+</span><span><a class="LN" name="89">   89   </a>  <b>}</b> <span class="KW">else</span> <b>{</b>
+</span><span><a class="LN" name="90">   90   </a>    <span class="KW">if</span> (rtb_Sum1 &lt;= -6.0) <b>{</b>
+</span><span><a class="LN" name="91">   91   </a>      rtb_Sum1 = -6.0;
+</span><span><a class="LN" name="92">   92   </a>    <b>}</b>
+</span><span><a class="LN" name="93">   93   </a>  <b>}</b>
+</span><span><a class="LN" name="94">   94   </a>
+</span><span><a class="LN" name="95">   95   </a>  <span class="CT">/* Sum: '<a href="matlab:coder.internal.code2model('rtwdemo_attitude:15')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/Sum1</i></font></a>' incorporates:</span>
+</span><span><a class="LN" name="96">   96   </a><span class="CT">   *  Saturate: '<a href="matlab:coder.internal.code2model('rtwdemo_attitude:13')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/RateLimit</i></font></a>'</span>
+</span><span><a class="LN" name="97">   97   </a><span class="CT">   */</span>
+</span><span><a class="LN" name="98">   98   </a>  rtb_Sum1 -= *u_Rate_FB;
+</span><span><a class="LN" name="99">   99   </a>
+</span><span><a class="LN" name="100">  100   </a>  <span class="CT">/* Sum: '<a href="matlab:coder.internal.code2model('rtwdemo_attitude:16')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/Sum2</i></font></a>' incorporates:</span>
+</span><span><a class="LN" name="101">  101   </a><span class="CT">   *  Gain: '<a href="matlab:coder.internal.code2model('rtwdemo_attitude:12')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/RateGain</i></font></a>'</span>
+</span><span><a class="LN" name="102">  102   </a><span class="CT">   */</span>
+</span><span><a class="LN" name="103">  103   </a>  *y_Surf_Cmd = 2.0 * rtb_Sum1 + localDW-&gt;Integrator;
+</span><span><a class="LN" name="104">  104   </a>
+</span><span><a class="LN" name="105">  105   </a>  <span class="CT">/* Saturate: '<a href="matlab:coder.internal.code2model('rtwdemo_attitude:5')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/CmdLimit</i></font></a>' */</span>
+</span><span><a class="LN" name="106">  106   </a>  <span class="KW">if</span> (*y_Surf_Cmd &gt;= 15.0) <b>{</b>
+</span><span><a class="LN" name="107">  107   </a>    <span class="CT">/* Sum: '<a href="matlab:coder.internal.code2model('rtwdemo_attitude:16')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/Sum2</i></font></a>' */</span>
+</span><span><a class="LN" name="108">  108   </a>    *y_Surf_Cmd = 15.0;
+</span><span><a class="LN" name="109">  109   </a>  <b>}</b> <span class="KW">else</span> <b>{</b>
+</span><span><a class="LN" name="110">  110   </a>    <span class="KW">if</span> (*y_Surf_Cmd &lt;= -15.0) <b>{</b>
+</span><span><a class="LN" name="111">  111   </a>      <span class="CT">/* Sum: '<a href="matlab:coder.internal.code2model('rtwdemo_attitude:16')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/Sum2</i></font></a>' */</span>
+</span><span><a class="LN" name="112">  112   </a>      *y_Surf_Cmd = -15.0;
+</span><span><a class="LN" name="113">  113   </a>    <b>}</b>
+</span><span><a class="LN" name="114">  114   </a>  <b>}</b>
+</span><span><a class="LN" name="115">  115   </a>
+</span><span><a class="LN" name="116">  116   </a>  <span class="CT">/* End of Saturate: '<a href="matlab:coder.internal.code2model('rtwdemo_attitude:5')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/CmdLimit</i></font></a>' */</span>
+</span><span><a class="LN" name="117">  117   </a>
+</span><span><a class="LN" name="118">  118   </a>  <span class="CT">/* Update for DiscreteIntegrator: '<a href="matlab:coder.internal.code2model('rtwdemo_attitude:33')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/Integrator</i></font></a>' incorporates:</span>
+</span><span><a class="LN" name="119">  119   </a><span class="CT">   *  Gain: '<a href="matlab:coder.internal.code2model('rtwdemo_attitude:8')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/IntGain</i></font></a>'</span>
+</span><span><a class="LN" name="120">  120   </a><span class="CT">   */</span>
+</span><span><a class="LN" name="121">  121   </a>  localDW-&gt;Integrator_DSTATE += 0.5 * rtb_Sum1 * 0.025;
+</span><span><a class="LN" name="122">  122   </a>  <span class="KW">if</span> (localDW-&gt;Integrator_DSTATE &gt;= 5.0) <b>{</b>
+</span><span><a class="LN" name="123">  123   </a>    localDW-&gt;Integrator_DSTATE = 5.0;
+</span><span><a class="LN" name="124">  124   </a>  <b>}</b> <span class="KW">else</span> <b>{</b>
+</span><span><a class="LN" name="125">  125   </a>    <span class="KW">if</span> (localDW-&gt;Integrator_DSTATE &lt;= -5.0) <b>{</b>
+</span><span><a class="LN" name="126">  126   </a>      localDW-&gt;Integrator_DSTATE = -5.0;
+</span><span><a class="LN" name="127">  127   </a>    <b>}</b>
+</span><span><a class="LN" name="128">  128   </a>  <b>}</b>
+</span><span><a class="LN" name="129">  129   </a>
+</span><span><a class="LN" name="130">  130   </a>  <span class="KW">if</span> (rtb_NotEngaged) <b>{</b>
+</span><span><a class="LN" name="131">  131   </a>    localDW-&gt;Integrator_PrevResetState = 1;
+</span><span><a class="LN" name="132">  132   </a>  <b>}</b> <span class="KW">else</span> <b>{</b>
+</span><span><a class="LN" name="133">  133   </a>    localDW-&gt;Integrator_PrevResetState = 0;
+</span><span><a class="LN" name="134">  134   </a>  <b>}</b>
+</span><span><a class="LN" name="135">  135   </a>
+</span><span><a class="LN" name="136">  136   </a>  <span class="CT">/* End of Update for DiscreteIntegrator: '<a href="matlab:coder.internal.code2model('rtwdemo_attitude:33')" name="code2model"><font color="#117755"><i>&lt;Root&gt;/Integrator</i></font></a>' */</span>
+</span><span><a class="LN" name="137">  137   </a><b>}</b>
+</span><span><a class="LN" name="138">  138   </a>
+</span><span><a class="LN" name="139">  139   </a><span class="CT">/* Model initialize function */</span>
+</span><span><a class="LN" name="140">  140   </a><span class="DT">void</span> <a name="fcn_rtwdemo_attitude_initialize">rtwdemo_attitude_initialize</a>(<span class="DT">const</span> <a href="../../_sharedutils/html/rtwtypes_h.html#type_char_T" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_char_T');" target="rtwreport_document_frame"><font color="#1122aa">char_T</font></a> **rt_errorStatus,
+</span><span><a class="LN" name="141">  141   </a>  <a href="rtwdemo_attitude_h.html#type_rtwdemo_attitude_RT_MODEL" onclick="if (top) if (top.docHiliteMe) top.docHiliteMe(window, 'type_rtwdemo_attitude_RT_MODEL');" target="rtwreport_document_frame"><font color="#1122aa">rtwdemo_attitude_RT_MODEL</font></a> *<span class="DT">const</span> rtwdemo_attitudertM)
+</span><span><a class="LN" name="142">  142   </a><b>{</b>
+</span><span><a class="LN" name="143">  143   </a>  <span class="CT">/* Registration code */</span>
+</span><span><a class="LN" name="144">  144   </a>
+</span><span><a class="LN" name="145">  145   </a>  <span class="CT">/* initialize error status */</span>
+</span><span><a class="LN" name="146">  146   </a>  rtmSetErrorStatusPointer(rtwdemo_attitudertM, rt_errorStatus);
+</span><span><a class="LN" name="147">  147   </a><b>}</b>
+</span><span><a class="LN" name="148">  148   </a>
+</span><span><a class="LN" name="149">  149   </a><span class="CT">/*</span>
+</span><span><a class="LN" name="150">  150   </a><span class="CT"> * File trailer for generated code.</span>
+</span><span><a class="LN" name="151">  151   </a><span class="CT"> *</span>
+</span><span><a class="LN" name="152">  152   </a><span class="CT"> * [EOF]</span>
+</span><span><a class="LN" name="153">  153   </a><span class="CT"> */</span>
+</span><span><a class="LN" name="154">  154   </a>
+</span></pre>
+</td></tr></table>
+</p>
+</body>
+</html>

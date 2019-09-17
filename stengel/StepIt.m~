@@ -1,0 +1,29 @@
+function StepIt( obj, event, string_arg )
+%UNTITLED Summary of this function goes here
+%   Detailed explanation goes here
+global du  flightsys
+
+x = flightsys.state(1:12); u = flightsys.state(13:end);
+xs = [x u+du'];
+if (xs(16) >1) xs(16) =1; end
+if (xs(16)<0) xs(16)=0; end
+
+% tic;[ttt,xxx] =   ode113('Dynamics',[0 0.08],xs);toc
+tic
+dx
+if (flightsys.count ==0) %% Just use Euler
+    dxdt = Dynamics(0.01,xs);
+elseif(flightsys.count == 1) %% Use AB1
+    dxdt = (3/2*Dynamics(0.01,xs)-1/2*dxdtm1);
+else %% AB2
+    dxdt = (23/12*Dynamics(0.01,xs)-4/3*dxdtm1+5/12*dxdtm2);
+end
+flightsys.dxdtm2 = flightsys.dxdtm1;
+    flightsys.dxdtm1 = dxdt;
+    flightsys.count = flightsys.count+1;
+  flightsys.state=xs+0.01*dxdt';
+ du = zeros(7,1);
+ %xxx(end,:);
+ toc
+end
+

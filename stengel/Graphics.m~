@@ -1,0 +1,17 @@
+function Graphics( obj, event, string_arg )
+
+global state
+figure(1);
+%   subplot(212); plot(state(4),state(5),'bx');
+ %      axis([-5000 5000 -5000 5000]);
+
+  % subplot(211); plot(state(4),-state(6),'bx');
+   %axis([-5000 5000  -500 5000]);
+    %hold on;
+    clf;
+    text(0.5,0.5,sprintf('Position: %f,%f,%f',state(4),state(5),-state(6)));
+    axis('off');
+pause(0.01);
+
+end
+
